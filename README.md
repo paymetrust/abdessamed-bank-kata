@@ -22,11 +22,4 @@ git clone pour recuperer le referentiel
 npm install
 npm test
 
- TEST  tests/account.test.ts
-  ✓ should be able to deposit money
-  ✓ should not be able to deposit less than 0.01
-  ✓ should be able to withdraw money
-  ✓ should not be able to withdraw more than the balance
-  ✓ should be able to get the balance
-
 ```
