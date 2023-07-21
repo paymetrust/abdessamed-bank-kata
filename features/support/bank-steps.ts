@@ -1,13 +1,15 @@
 const assert = require('assert');
 import { Given, When, Then } from '@cucumber/cucumber';
 import { Account } from '../../src/domain/account/Account';
-import {expect, should} from 'chai'
+import {expect} from 'chai'
 import { Customer } from '../../src/domain/customer/Customer';
 import { TransactionStatus } from '../../src/domain/account/TransactionStatus';
+import { AccountController } from '../../src/infra/controllers/AccountController';
 
 
 const customer = new Customer('Gerard','KOFFI', new Date)
 const account = new Account(customer, 0);
+const ctl = new AccountController(account);
 
 Given('a customer with a balance of €100', function () {
     return account.balance += 100;
@@ -23,7 +25,7 @@ Then('the deposit should be successful', function () {
 
 Then('the customer deposits less than €0.01', async ()=> {
   try {
-    account.deposit(0.00198);
+    ctl.deposit(0.00198);
   } catch (e) {
     if (e instanceof Error) {
       expect(e.message).equal("Le montant du dépôt doit être supérieur à 0.01");
@@ -53,7 +55,7 @@ Given('a customer with a balance of ${int}', function (int) {
 
 When('the customer failed to withdraw more than his balance', function () {
   try {
-    account.withdraw(400);
+    ctl.withdraw(400);
   } catch (e) {
     if (e instanceof Error) {
       expect(e.message).equal("Le solde du compte est insuffisant");

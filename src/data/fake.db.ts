@@ -3,7 +3,6 @@ import { Transaction } from "../domain/account/Transaction";
 import { TransactionStatus } from "../domain/account/TransactionStatus";
 import { TransactionType } from "../domain/account/TransactionType";
 import { Customer } from "../domain/customer/Customer";
-import { ListTransactions } from "../domain/api/AccountService";
 
 let fakeAccounts = [
     new Account(new Customer('Lassina','DIARRA',new Date), 1000000),
@@ -24,7 +23,8 @@ let fakeTransactions = [
   ];
 
 
-export const findAllFakeTransactions: ListTransactions = ()  => fakeTransactions;
+export const findAllFakeTransactions: any = ()  => fakeTransactions;
+export const findAllfakeAccounts: any = ()  => fakeAccounts;
 
 export const setAccounts = (accounts: Account[]) => {
     fakeAccounts = accounts;

@@ -8,4 +8,3 @@ export async function startServer(port: number) {
     await new Promise((resolve) => app.listen(port, () => resolve(app)));
 }
 
-
